@@ -7,7 +7,7 @@ export type CartLine = {
   image: string;
   priceUsd: number;
   quantity: number;
-  ringSize?: string;
+  ringSize?: string | undefined;
 };
 
 type CartContextValue = {

@@ -12,9 +12,9 @@ type Search = {
 
 export const Route = createFileRoute("/shop/")({
   validateSearch: (search: Record<string, unknown>): Search => ({
-    category: typeof search.category === "string" ? search.category : undefined,
-    stone: typeof search.stone === "string" ? search.stone : undefined,
-    q: typeof search.q === "string" ? search.q : undefined,
+    category: typeof search['category'] === "string" ? (search['category'] as string) : undefined,
+    stone: typeof search['stone'] === "string" ? (search['stone'] as string) : undefined,
+    q: typeof search['q'] === "string" ? (search['q'] as string) : undefined,
   }),
   head: () => ({
     meta: [

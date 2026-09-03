@@ -52,7 +52,7 @@ function Checkout() {
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!user) return;
-    if (lines.length === 0) return toast.error("Your bag is empty");
+    if (lines.length === 0) toast.error("Your bag is empty");
     setSaving(true);
     const orderNumber = `GM-${Date.now().toString(36).toUpperCase()}`;
     const { data, error } = await supabase
@@ -79,7 +79,7 @@ function Checkout() {
 
     if (error || !data) {
       setSaving(false);
-      return toast.error(error?.message ?? "Could not place order");
+      toast.error(error?.message ?? "Could not place order");
     }
 
     const { error: itemError } = await supabase.from("order_items").insert(
@@ -93,7 +93,7 @@ function Checkout() {
       })),
     );
     setSaving(false);
-    if (itemError) return toast.error(itemError.message);
+    if (itemError) toast.error(itemError.message);
 
     clear();
     toast.success(`Order ${data.order_number} placed`);
