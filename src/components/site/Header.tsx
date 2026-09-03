@@ -35,7 +35,7 @@ export function Header() {
                   <Link
                     key={item.label}
                     to={item.to}
-                    search={"search" in item ? (item.search as never) : undefined}
+                    {...("search" in item ? { search: item.search as never } : {})}
                     onClick={() => setOpen(false)}
                     className="py-3 text-sm tracking-[0.18em] uppercase border-b border-gold/10 hover:text-gold"
                   >
@@ -81,7 +81,7 @@ export function Header() {
             <Link
               key={item.label}
               to={item.to}
-              search={"search" in item ? (item.search as never) : undefined}
+              {...("search" in item ? { search: item.search as never } : {})}
               className="transition-colors hover:text-gold"
             >
               {item.label}
