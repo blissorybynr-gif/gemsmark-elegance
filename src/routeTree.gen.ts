@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
+import { Route as AccountRouteImport } from './routes/account'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as CartRouteImport } from './routes/cart'
 import { Route as CheckoutRouteImport } from './routes/checkout'
@@ -18,6 +19,7 @@ import { Route as ContactRouteImport } from './routes/contact'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as ReviewsRouteImport } from './routes/reviews'
 import { Route as ShippingRouteImport } from './routes/shipping'
+import { Route as TrackRouteImport } from './routes/track'
 import { Route as BlogsIndexRouteImport } from './routes/blogs.index'
 import { Route as BlogsSlugRouteImport } from './routes/blogs.$slug'
 import { Route as ShopIndexRouteImport } from './routes/shop.index'
@@ -31,6 +33,11 @@ const IndexRoute = IndexRouteImport.update({
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
   path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AccountRoute = AccountRouteImport.update({
+  id: '/account',
+  path: '/account',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthRoute = AuthRouteImport.update({
@@ -68,6 +75,11 @@ const ShippingRoute = ShippingRouteImport.update({
   path: '/shipping',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TrackRoute = TrackRouteImport.update({
+  id: '/track',
+  path: '/track',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const BlogsIndexRoute = BlogsIndexRouteImport.update({
   id: '/blogs/',
   path: '/blogs/',
@@ -92,6 +104,7 @@ const ShopSlugRoute = ShopSlugRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/account': typeof AccountRoute
   '/auth': typeof AuthRoute
   '/cart': typeof CartRoute
   '/checkout': typeof CheckoutRoute
@@ -99,6 +112,7 @@ export interface FileRoutesByFullPath {
   '/privacy': typeof PrivacyRoute
   '/reviews': typeof ReviewsRoute
   '/shipping': typeof ShippingRoute
+  '/track': typeof TrackRoute
   '/blogs/$slug': typeof BlogsSlugRoute
   '/shop/$slug': typeof ShopSlugRoute
   '/blogs/': typeof BlogsIndexRoute
@@ -107,6 +121,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/account': typeof AccountRoute
   '/auth': typeof AuthRoute
   '/cart': typeof CartRoute
   '/checkout': typeof CheckoutRoute
@@ -114,6 +129,7 @@ export interface FileRoutesByTo {
   '/privacy': typeof PrivacyRoute
   '/reviews': typeof ReviewsRoute
   '/shipping': typeof ShippingRoute
+  '/track': typeof TrackRoute
   '/blogs/$slug': typeof BlogsSlugRoute
   '/shop/$slug': typeof ShopSlugRoute
   '/blogs': typeof BlogsIndexRoute
@@ -123,6 +139,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/account': typeof AccountRoute
   '/auth': typeof AuthRoute
   '/cart': typeof CartRoute
   '/checkout': typeof CheckoutRoute
@@ -130,6 +147,7 @@ export interface FileRoutesById {
   '/privacy': typeof PrivacyRoute
   '/reviews': typeof ReviewsRoute
   '/shipping': typeof ShippingRoute
+  '/track': typeof TrackRoute
   '/blogs/$slug': typeof BlogsSlugRoute
   '/shop/$slug': typeof ShopSlugRoute
   '/blogs/': typeof BlogsIndexRoute
@@ -140,6 +158,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/about'
+    | '/account'
     | '/auth'
     | '/cart'
     | '/checkout'
@@ -147,6 +166,7 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/reviews'
     | '/shipping'
+    | '/track'
     | '/blogs/$slug'
     | '/shop/$slug'
     | '/blogs/'
@@ -155,6 +175,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/about'
+    | '/account'
     | '/auth'
     | '/cart'
     | '/checkout'
@@ -162,6 +183,7 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/reviews'
     | '/shipping'
+    | '/track'
     | '/blogs/$slug'
     | '/shop/$slug'
     | '/blogs'
@@ -170,6 +192,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/about'
+    | '/account'
     | '/auth'
     | '/cart'
     | '/checkout'
@@ -177,6 +200,7 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/reviews'
     | '/shipping'
+    | '/track'
     | '/blogs/$slug'
     | '/shop/$slug'
     | '/blogs/'
@@ -186,6 +210,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  AccountRoute: typeof AccountRoute
   AuthRoute: typeof AuthRoute
   CartRoute: typeof CartRoute
   CheckoutRoute: typeof CheckoutRoute
@@ -193,6 +218,7 @@ export interface RootRouteChildren {
   PrivacyRoute: typeof PrivacyRoute
   ReviewsRoute: typeof ReviewsRoute
   ShippingRoute: typeof ShippingRoute
+  TrackRoute: typeof TrackRoute
   BlogsSlugRoute: typeof BlogsSlugRoute
   ShopSlugRoute: typeof ShopSlugRoute
   BlogsIndexRoute: typeof BlogsIndexRoute
@@ -213,6 +239,13 @@ declare module '@tanstack/react-router' {
       path: '/about'
       fullPath: '/about'
       preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/account': {
+      id: '/account'
+      path: '/account'
+      fullPath: '/account'
+      preLoaderRoute: typeof AccountRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/auth': {
@@ -264,6 +297,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ShippingRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/track': {
+      id: '/track'
+      path: '/track'
+      fullPath: '/track'
+      preLoaderRoute: typeof TrackRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/blogs/': {
       id: '/blogs/'
       path: '/blogs'
@@ -298,6 +338,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  AccountRoute: AccountRoute,
   AuthRoute: AuthRoute,
   CartRoute: CartRoute,
   CheckoutRoute: CheckoutRoute,
@@ -305,6 +346,7 @@ const rootRouteChildren: RootRouteChildren = {
   PrivacyRoute: PrivacyRoute,
   ReviewsRoute: ReviewsRoute,
   ShippingRoute: ShippingRoute,
+  TrackRoute: TrackRoute,
   BlogsSlugRoute: BlogsSlugRoute,
   ShopSlugRoute: ShopSlugRoute,
   BlogsIndexRoute: BlogsIndexRoute,
